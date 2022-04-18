@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import CreateWidgetStepOne from "./components/linePieChats/createWidgetStepOne";
+import CreateWidgetStepTwo from "./components/linePieChats/createWidgetStepTwo";
+import StepOrdered from "./components/stepOrdered";
+import { Modal, ModalContent, Button } from "semantic-ui-react";
 
 function App() {
+  const [currentStep, setCurrentStep] = useState("stepOne");
+  const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
+    useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button onClick={() => setShowCreateCustomWidgetModal(true)}>
+        Create Custom Widget
+      </Button>
+      <Modal size="large" open={showCreateCustomWidgetModal}>
+        <Modal.Header>
+          <h1>Create Custom Widget</h1>
+          <Button
+            circular
+            icon="close"
+            title="Close"
+            onClick={() => setShowCreateCustomWidgetModal(false)}
+            floated="right"
+            style={{ top: "-60px", position: "relative", right: "-10px" }}
+          />
+        </Modal.Header>
+        <ModalContent>
+          <StepOrdered currentStep={currentStep} />
+          {currentStep === "stepOne" && (
+            <CreateWidgetStepOne setCurrentStep={setCurrentStep} />
+          )}
+          {currentStep === "stepTwo" && (
+            <CreateWidgetStepTwo setCurrentStep={setCurrentStep} />
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
