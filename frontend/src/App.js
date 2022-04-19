@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
-import CreateWidgetStepOne from "./components/linePieChats/createWidgetStepOne";
-import CreateWidgetStepTwo from "./components/linePieChats/createWidgetStepTwo";
+import CreateWidgetStepOne from "./components/lineBarChats/createWidgetStepOne";
+import CreateWidgetStepTwo from "./components/lineBarChats/createWidgetStepTwo";
 import StepOrdered from "./components/stepOrdered";
 import { Modal, ModalContent, Button, Header } from "semantic-ui-react";
 import AddWidgetLayout from './layout/AddWidgetLayout.js';

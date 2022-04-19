@@ -1,4 +1,4 @@
-let initialState = [];
+const initialState = [];
 
 export default function rootReducer(currentState = initialState, action) {
   switch (action.type) {

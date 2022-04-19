@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Dropdown, Form, Input, TextArea, Button } from "semantic-ui-react";
+import { alarms } from "../../hardcoded/alarms";
 
-const xAxisParameterOptions = [
-  { key: "option1", value: "option1", text: "option1" },
-  { key: "option2", value: "option2", text: "option2" },
-];
+const xyAxisParameterOptions = [];
 
-const yAxisParameterOptions = [
-  { key: "option3", value: "option3", text: "option3" },
-  { key: "option4", value: "option4", text: "option4" },
-];
+for (let key of Object.keys(alarms[0])) {
+  xyAxisParameterOptions.push({
+    key,
+    value: key,
+    text: key,
+  });
+}
 
 const CreateWidgetStepOne = ({ setCurrentStep }) => {
   const createCustomWidgetStepOneData = JSON.parse(
@@ -64,7 +65,7 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
         <Dropdown
           value={xAxisParameter}
           placeholder="Select your X-Axis Parameter"
-          options={xAxisParameterOptions}
+          options={xyAxisParameterOptions}
           onChange={(e, { value }) => setXAxisParameter(value)}
           selection
         />
@@ -75,7 +76,7 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
           value={yAxisParameter}
           onChange={(e, { value }) => setYAxisParameter(value)}
           placeholder="Select your Y-Axis Parameter"
-          options={yAxisParameterOptions}
+          options={xyAxisParameterOptions}
           selection
         />
       </Form.Field>
