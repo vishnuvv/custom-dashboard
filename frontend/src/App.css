@@ -35,6 +35,8 @@
 }
 .react-grid-item {
   width: 35vw !important;
+
+  position: relative !important;
   margin: 20px;
 }
 
