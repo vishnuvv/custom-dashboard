@@ -4,11 +4,14 @@ import "./index.css";
 import "semantic-ui-css/semantic.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
+import { configureStore } from '@reduxjs/toolkit'
 
-const store = createStore(rootReducer);
+const store = configureStore({ reducer: rootReducer })
+
+
+//const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
