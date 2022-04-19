@@ -27,7 +27,10 @@ const legendOrientationOptions = [
   { key: "legendThree", value: "legendThree", text: "legendThree" },
 ];
 
-const CreateWidgetStepTwo = ({ setCurrentStep }) => {
+const CreateWidgetStepTwo = ({
+  setCurrentStep,
+  setShowCreateCustomWidgetModal,
+}) => {
   const dispatch = useDispatch();
   const createCustomWidgetStepTwoData = JSON.parse(
     window.localStorage.getItem("createCustomWidget.stepTwo")
@@ -71,6 +74,7 @@ const CreateWidgetStepTwo = ({ setCurrentStep }) => {
         ...createCustomWidgetStepTwoData,
       },
     });
+    setShowCreateCustomWidgetModal(false);
   }
   return (
     <Form>

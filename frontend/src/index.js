@@ -6,12 +6,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({ reducer: rootReducer })
-
-
-//const store = createStore(rootReducer);
+const store = configureStore({ reducer: rootReducer });
 
 ReactDOM.render(
   <React.StrictMode>

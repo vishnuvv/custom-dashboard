@@ -1,44 +1,37 @@
 import "./App.css";
-import React, { useState } from "react";
-import CreateWidgetStepOne from "./components/lineBarChats/createWidgetStepOne";
-import CreateWidgetStepTwo from "./components/lineBarChats/createWidgetStepTwo";
-import StepOrdered from "./components/stepOrdered";
-import { Modal, ModalContent, Button, Header } from "semantic-ui-react";
-import AddWidgetLayout from './layout/AddWidgetLayout.js';
-import '../node_modules/react-grid-layout/css/styles.css';
-import '../node_modules/react-resizable/css/styles.css';
+import React from "react";
+import AddWidgetLayout from "./layout/AddWidgetLayout.js";
+import "../node_modules/react-grid-layout/css/styles.css";
+import "../node_modules/react-resizable/css/styles.css";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState("stepOne");
-  const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
-    useState(false);
   return (
     <div className="App">
-      <Button onClick={() => setShowCreateCustomWidgetModal(true)}>
-        Create Custom Widget
-      </Button>
-      <Modal size="large" open={showCreateCustomWidgetModal}>
-        <Modal.Header>
-          <h1>Create Custom Widget</h1>
-          <Button
-            circular
-            icon="close"
-            title="Close"
-            onClick={() => setShowCreateCustomWidgetModal(false)}
-            floated="right"
-            style={{ top: "-60px", position: "relative", right: "-10px" }}
+      <div class="ui segments">
+        <div
+          class="ui segment"
+          style={{ backgroundColor: "rgb(245, 245, 245)" }}
+        >
+          <img
+            alt="Cambium Logo"
+            src="http://linkplanner.cambiumnetworks.com/anp_import/static/media/logo.c419a1da.png"
+            style={{ width: "150px", height: "auto", fontSize: ".92857143rem" }}
           />
-        </Modal.Header>
-        <ModalContent>
-          <StepOrdered currentStep={currentStep} />
-          {currentStep === "stepOne" && (
-            <CreateWidgetStepOne setCurrentStep={setCurrentStep} />
-          )}
-          {currentStep === "stepTwo" && (
-            <CreateWidgetStepTwo setCurrentStep={setCurrentStep} />
-          )}
-        </ModalContent>
-      </Modal>
+        </div>
+        <div
+          class="ui inverted segment"
+          style={{ backgroundColor: "rgb(0, 58, 112)", lineHeight: "0.6" }}
+        >
+          <span style={{ fontSize: "0.9rem", fontWeight: "700" }}>
+            Custom Widget Chats
+          </span>
+          <span
+            style={{ fontSize: "0.9rem", fontWeight: "700", float: "right" }}
+          >
+            v1.0.0
+          </span>
+        </div>
+      </div>
       <AddWidgetLayout />
     </div>
   );
