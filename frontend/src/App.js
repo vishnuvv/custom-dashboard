@@ -4,6 +4,10 @@ import CreateWidgetStepOne from "./components/linePieChats/createWidgetStepOne";
 import CreateWidgetStepTwo from "./components/linePieChats/createWidgetStepTwo";
 import StepOrdered from "./components/stepOrdered";
 import { Modal, ModalContent, Button, Header } from "semantic-ui-react";
+import AddWidgetLayout from './layout/AddWidgetLayout.js';
+import '../node_modules/react-grid-layout/css/styles.css';
+import '../node_modules/react-resizable/css/styles.css';
+
 function App() {
   const [currentStep, setCurrentStep] = useState("stepOne");
   const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
@@ -35,6 +39,7 @@ function App() {
           )}
         </ModalContent>
       </Modal>
+      <AddWidgetLayout />
     </div>
   );
 }
