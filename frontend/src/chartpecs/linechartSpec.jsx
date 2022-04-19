@@ -1,119 +1,157 @@
 const linechartSpec = {
-  $schema: "https://vega.github.io/schema/vega/v5.json",
-  description: "A basic line chart example.",
-  width: 500,
-  height: 200,
-  padding: 5,
-
-  signals: [
-    {
-      name: "interpolate",
-      value: "linear",
-      bind: {
-        input: "select",
-        options: [
-          "basis",
-          "cardinal",
-          "catmull-rom",
-          "linear",
-          "monotone",
-          "natural",
-          "step",
-          "step-after",
-          "step-before",
-        ],
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  description: "Stock prices of 5 Tech Companies over Time.",
+  width: "600",
+  height: "600",
+  data: {
+    name: "alarms",
+    values: [
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650182400000,
       },
-    },
-  ],
-
-  data: [
-    {
-      name: "table",
-      values: [
-        { x: 0, y: 28, c: 0 },
-        { x: 0, y: 20, c: 1 },
-        { x: 1, y: 43, c: 0 },
-        { x: 1, y: 35, c: 1 },
-        { x: 2, y: 81, c: 0 },
-        { x: 2, y: 10, c: 1 },
-        { x: 3, y: 19, c: 0 },
-        { x: 3, y: 15, c: 1 },
-        { x: 4, y: 52, c: 0 },
-        { x: 4, y: 48, c: 1 },
-        { x: 5, y: 24, c: 0 },
-        { x: 5, y: 28, c: 1 },
-        { x: 6, y: 87, c: 0 },
-        { x: 6, y: 66, c: 1 },
-        { x: 7, y: 17, c: 0 },
-        { x: 7, y: 27, c: 1 },
-        { x: 8, y: 68, c: 0 },
-        { x: 8, y: 16, c: 1 },
-        { x: 9, y: 49, c: 0 },
-        { x: 9, y: 25, c: 1 },
-      ],
-    },
-  ],
-
-  scales: [
-    {
-      name: "x",
-      type: "point",
-      range: "width",
-      domain: { data: "table", field: "x" },
-    },
-    {
-      name: "y",
-      type: "linear",
-      range: "height",
-      nice: true,
-      zero: true,
-      domain: { data: "table", field: "y" },
-    },
-    {
-      name: "color",
-      type: "ordinal",
-      range: "category",
-      domain: { data: "table", field: "c" },
-    },
-  ],
-
-  axes: [
-    { orient: "bottom", scale: "x" },
-    { orient: "left", scale: "y" },
-  ],
-
-  marks: [
-    {
-      type: "group",
-      from: {
-        facet: {
-          name: "series",
-          data: "table",
-          groupby: "c",
-        },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650182400000,
       },
-      marks: [
-        {
-          type: "line",
-          from: { data: "series" },
-          encode: {
-            enter: {
-              x: { scale: "x", field: "x" },
-              y: { scale: "y", field: "y" },
-              stroke: { scale: "color", field: "c" },
-              strokeWidth: { value: 2 },
-            },
-            update: {
-              interpolate: { signal: "interpolate" },
-              strokeOpacity: { value: 1 },
-            },
-            hover: {
-              strokeOpacity: { value: 0.5 },
-            },
-          },
-        },
-      ],
-    },
-  ],
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650182400000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650186000000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650186000000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650186000000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650189600000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650189600000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650189600000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650193200000,
+      },
+      {
+        type: "Major",
+        count: 73,
+        Time: 1650193200000,
+      },
+      {
+        type: "Critical",
+        count: 23,
+        Time: 1650193200000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650196800000,
+      },
+      {
+        type: "Major",
+        count: 72,
+        Time: 1650196800000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650196800000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650200400000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650200400000,
+      },
+      {
+        type: "Critical",
+        count: 250,
+        Time: 1650200400000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650207600000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650207600000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650207600000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650211200000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650211200000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650211200000,
+      },
+      {
+        type: "Minor",
+        count: 180,
+        Time: 1650214800000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650214800000,
+      },
+      {
+        type: "Critical",
+        count: 200,
+        Time: 1650214800000,
+      },
+    ],
+  },
+  mark: {
+    type: "line",
+    point: true,
+  },
+  encoding: {
+    x: { timeUnit: "dayhours", field: "Time" },
+    y: { field: "count", type: "quantitative" },
+    color: { field: "type", type: "nominal" },
+  },
 };
+
 export default linechartSpec;

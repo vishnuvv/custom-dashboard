@@ -1,96 +1,157 @@
-const barChartSpec = {
-  $schema: "https://vega.github.io/schema/vega/v5.json",
-  width: 400,
-  height: 200,
-  padding: 5,
-
-  data: [
-    {
-      name: "table",
-      values: [
-        { category: "A", amount: 28 },
-        { category: "B", amount: 55 },
-        { category: "C", amount: 43 },
-        { category: "D", amount: 91 },
-        { category: "E", amount: 81 },
-        { category: "F", amount: 53 },
-        { category: "G", amount: 19 },
-        { category: "H", amount: 87 },
-      ],
-    },
-  ],
-
-  signals: [
-    {
-      name: "tooltip",
-      value: {},
-      on: [
-        { events: "rect:mouseover", update: "datum" },
-        { events: "rect:mouseout", update: "{}" },
-      ],
-    },
-  ],
-
-  scales: [
-    {
-      name: "xscale",
-      type: "band",
-      domain: { data: "table", field: "category" },
-      range: "width",
-      padding: 0.05,
-      round: true,
-    },
-    {
-      name: "yscale",
-      domain: { data: "table", field: "amount" },
-      nice: true,
-      range: "height",
-    },
-  ],
-
-  axes: [
-    { orient: "bottom", scale: "xscale" },
-    { orient: "left", scale: "yscale" },
-  ],
-
-  marks: [
-    {
-      type: "rect",
-      from: { data: "table" },
-      encode: {
-        enter: {
-          x: { scale: "xscale", field: "category" },
-          width: { scale: "xscale", band: 1 },
-          y: { scale: "yscale", field: "amount" },
-          y2: { scale: "yscale", value: 0 },
-        },
-        update: {
-          fill: { value: "steelblue" },
-        },
-        hover: {
-          fill: { value: "red" },
-        },
+const linechartSpec = {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  description: "Stock prices of 5 Tech Companies over Time.",
+  width: "600",
+  height: "600",
+  data: {
+    name: "alarms",
+    values: [
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650182400000,
       },
-    },
-    {
-      type: "text",
-      encode: {
-        enter: {
-          align: { value: "center" },
-          baseline: { value: "bottom" },
-          fill: { value: "#333" },
-        },
-        update: {
-          x: { scale: "xscale", signal: "tooltip.category", band: 0.5 },
-          y: { scale: "yscale", signal: "tooltip.amount", offset: -2 },
-          text: { signal: "tooltip.amount" },
-          fillOpacity: [
-            { test: "isNaN(tooltip.amount)", value: 0 },
-            { value: 1 },
-          ],
-        },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650182400000,
       },
-    },
-  ],
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650182400000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650186000000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650186000000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650186000000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650189600000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650189600000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650189600000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650193200000,
+      },
+      {
+        type: "Major",
+        count: 73,
+        Time: 1650193200000,
+      },
+      {
+        type: "Critical",
+        count: 23,
+        Time: 1650193200000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650196800000,
+      },
+      {
+        type: "Major",
+        count: 72,
+        Time: 1650196800000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650196800000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650200400000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650200400000,
+      },
+      {
+        type: "Critical",
+        count: 250,
+        Time: 1650200400000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650207600000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650207600000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650207600000,
+      },
+      {
+        type: "Minor",
+        count: 18,
+        Time: 1650211200000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650211200000,
+      },
+      {
+        type: "Critical",
+        count: 2,
+        Time: 1650211200000,
+      },
+      {
+        type: "Minor",
+        count: 180,
+        Time: 1650214800000,
+      },
+      {
+        type: "Major",
+        count: 723,
+        Time: 1650214800000,
+      },
+      {
+        type: "Critical",
+        count: 200,
+        Time: 1650214800000,
+      },
+    ],
+  },
+  mark: {
+    type: "bar",
+    point: true,
+  },
+  encoding: {
+    x: { timeUnit: "dayhours", field: "Time" },
+    y: { field: "count", type: "quantitative" },
+    color: { field: "type", type: "nominal" },
+  },
 };
-export default barChartSpec;
+
+export default linechartSpec;
