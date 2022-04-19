@@ -4,11 +4,16 @@ import { alarms } from "../../hardcoded/alarms";
 
 const xyAxisParameterOptions = [];
 
-for (let key of Object.keys(alarms[0])) {
+const uniqueAlaramTypes = new Set();
+
+for (let alaram of alarms) {
+  uniqueAlaramTypes.add(alaram.type);
+}
+for (let item of uniqueAlaramTypes) {
   xyAxisParameterOptions.push({
-    key,
-    value: key,
-    text: key,
+    key: item,
+    value: item,
+    text: item,
   });
 }
 

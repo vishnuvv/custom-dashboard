@@ -26,6 +26,10 @@ const legendOrientationOptions = [
   { key: "legendTwo", value: "legendTwo", text: "legendTwo" },
   { key: "legendThree", value: "legendThree", text: "legendThree" },
 ];
+const chatTypeOptions = [
+  { key: "linechat", value: "linechat", text: "linechat" },
+  { key: "barchat", value: "barchat", text: "barchat" },
+];
 
 const CreateWidgetStepTwo = ({
   setCurrentStep,
@@ -37,6 +41,9 @@ const CreateWidgetStepTwo = ({
   );
   const createCustomWidgetStepOneData = JSON.parse(
     window.localStorage.getItem("createCustomWidget.stepOne")
+  );
+  const [chatType, setChatType] = useState(
+    createCustomWidgetStepTwoData?.chartConfig?.chatType || ""
   );
   const [yAxisOrientation, setYAxisOrientation] = useState(
     createCustomWidgetStepTwoData?.chartConfig?.yAxisOrientation || ""
@@ -57,6 +64,7 @@ const CreateWidgetStepTwo = ({
       "createCustomWidget.stepTwo",
       JSON.stringify({
         chartConfig: {
+          chatType,
           yAxisOrientation,
           yAxisScale,
           noOfSticks,
@@ -78,6 +86,16 @@ const CreateWidgetStepTwo = ({
   }
   return (
     <Form>
+      <Form.Field required>
+        <label>Chat Type</label>
+        <Dropdown
+          value={chatType}
+          onChange={(e, { value }) => setChatType(value)}
+          placeholder="Select your chat type"
+          options={chatTypeOptions}
+          selection
+        />
+      </Form.Field>
       <Form.Field required>
         <label>Y-Axis Orientation</label>
         <Dropdown
