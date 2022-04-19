@@ -3,17 +3,20 @@ import React, { useState } from "react";
 import CreateWidgetStepOne from "./components/lineBarChats/createWidgetStepOne";
 import CreateWidgetStepTwo from "./components/lineBarChats/createWidgetStepTwo";
 import StepOrdered from "./components/stepOrdered";
-import { Modal, ModalContent, Button, Header } from "semantic-ui-react";
-import AddWidgetLayout from './layout/AddWidgetLayout.js';
-import '../node_modules/react-grid-layout/css/styles.css';
-import '../node_modules/react-resizable/css/styles.css';
-
+import { Modal, ModalContent, Button } from "semantic-ui-react";
+import AddWidgetLayout from "./layout/AddWidgetLayout.js";
+import "../node_modules/react-grid-layout/css/styles.css";
+import "../node_modules/react-resizable/css/styles.css";
+import { render } from "./utils";
+import linechartSpec from "./chartpecs/linechartSpec";
 function App() {
   const [currentStep, setCurrentStep] = useState("stepOne");
   const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
     useState(false);
+  render(linechartSpec);
   return (
     <div className="App">
+      <div id="view"></div>
       <Button onClick={() => setShowCreateCustomWidgetModal(true)}>
         Create Custom Widget
       </Button>
