@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import CreateWidgetStepOne from "./components/linePieChats/createWidgetStepOne";
 import CreateWidgetStepTwo from "./components/linePieChats/createWidgetStepTwo";
 import StepOrdered from "./components/stepOrdered";
-import { Modal, ModalContent, Button } from "semantic-ui-react";
-
+import { Modal, ModalContent, Button, Header } from "semantic-ui-react";
 function App() {
   const [currentStep, setCurrentStep] = useState("stepOne");
   const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
