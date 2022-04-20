@@ -27,8 +27,8 @@ const legendOrientationOptions = [
   { key: "legendThree", value: "legendThree", text: "legendThree" },
 ];
 const chatTypeOptions = [
-  { key: "linechat", value: "linechat", text: "linechat" },
-  { key: "barchat", value: "barchat", text: "barchat" },
+  { key: "linechat", value: "linechat", text: "Line chart" },
+  { key: "barchat", value: "barchat", text: "Bar chart" },
 ];
 
 const CreateWidgetStepTwo = ({

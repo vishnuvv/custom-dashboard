@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import embed from "vega-embed";
 import {
   Accordion,
   Button,
@@ -10,11 +11,32 @@ import {
 import StepOrdered from "../components/stepOrdered";
 import CreateWidgetStepOne from "../components/lineBarChats/createWidgetStepOne";
 import CreateWidgetStepTwo from "../components/lineBarChats/createWidgetStepTwo";
+import { render } from "../utils";
+import linechartSpec from "../chartpecs/linechartSpec";
+import barchartSpec from "../chartpecs/barchartSpec";
 
-export default function WidgetComponent(props) {
+function WidgetComponent(props) {
+  const { customWidgets, index } = props;
   const [currentStep, setCurrentStep] = useState("stepOne");
   const [showCreateCustomWidgetModal, setShowCreateCustomWidgetModal] =
     useState(false);
+  const config = customWidgets?.[index];
+  const updateConfigAndRender = (config) => {
+    const xAxisParam = config?.dataConfig?.xAxisParameter;
+    const yAxisParam = config?.dataConfig?.yAxisParameter;
+    const ticks = config?.chartConfig?.noOfSticks;
+    const chartType = config?.chartConfig?.chatType;
+    let updatedSpec;
+    if (chartType == "linechat") {
+      updatedSpec = linechartSpec;
+    } else if (chartType == "barchat") {
+      updatedSpec = barchartSpec;
+    }
+    //updatedSpec.encoding.x.axis.tickCount = ticks;
+    updatedSpec.encoding.y.axis.tickCount = parseInt(ticks);
+    setTimeout(() => embed(`#${config?.title}`, updatedSpec), 1000);
+    //render(updatedSpec, config?.title);
+  };
   return (
     <>
       <Accordion>
@@ -27,14 +49,15 @@ export default function WidgetComponent(props) {
         >
           {props?.customWidgets[`${props?.index}`]?.title
             ? props?.customWidgets[`${props?.index}`]?.title
-            : `Accordion Title ${props?.index}`}
+            : `Title ${props?.index}`}
         </Accordion.Title>
-        <Accordion.Content as={Segment} attached style={{ display: "block" }}>
+        <Accordion.Content as={Segment} attached active={true}>
+          <div id={config?.title}></div>
           {props?.customWidgets[`${props?.index}`]?.title ? (
-            <p>chat data goes here</p>
+            updateConfigAndRender(config)
           ) : (
             <Button onClick={() => setShowCreateCustomWidgetModal(true)}>
-              Create Custom Widget
+              Configure Widget
             </Button>
           )}
           {/* <Button onClick={() => setShowCreateCustomWidgetModal(true)}>
@@ -42,9 +65,13 @@ export default function WidgetComponent(props) {
           </Button> */}
         </Accordion.Content>
       </Accordion>
-      <Modal size="large" open={showCreateCustomWidgetModal}>
+      <Modal
+        size="medium"
+        style={{ maxHeight: "90vh", overflow: "auto" }}
+        open={showCreateCustomWidgetModal}
+      >
         <Modal.Header>
-          <h1>Create Custom Widget</h1>
+          <h2>Create Custom Widget</h2>
           <Button
             circular
             icon="close"
@@ -70,3 +97,4 @@ export default function WidgetComponent(props) {
     </>
   );
 }
+export default React.memo(WidgetComponent);

@@ -14,6 +14,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2",
     "vega": "^5.22.1",
+    "vega-embed": "^6.20.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

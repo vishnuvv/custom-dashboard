@@ -1,5 +1,8 @@
+import React from "react";
 import * as vega from "vega";
-export function render(spec, id = "view") {
+
+function VegaView(props) {
+  const { id, spec } = props;
   const view = new vega.View(vega.parse(spec), {
     renderer: "canvas", // renderer (canvas or svg)
     container: `#${id}`, // parent DOM container
@@ -7,3 +10,5 @@ export function render(spec, id = "view") {
   });
   return view.runAsync();
 }
+
+export default VegaView;

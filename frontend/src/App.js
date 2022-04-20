@@ -7,9 +7,9 @@ import "../node_modules/react-resizable/css/styles.css";
 function App() {
   return (
     <div className="App">
-      <div class="ui segments">
+      <div className="ui segments">
         <div
-          class="ui segment"
+          className="ui segment"
           style={{ backgroundColor: "rgb(245, 245, 245)" }}
         >
           <img
@@ -19,11 +19,11 @@ function App() {
           />
         </div>
         <div
-          class="ui inverted segment"
+          className="ui inverted segment"
           style={{ backgroundColor: "rgb(0, 58, 112)", lineHeight: "0.6" }}
         >
           <span style={{ fontSize: "0.9rem", fontWeight: "700" }}>
-            Custom Widget Chats
+            Configurable Dashboard
           </span>
           <span
             style={{ fontSize: "0.9rem", fontWeight: "700", float: "right" }}

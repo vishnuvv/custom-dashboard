@@ -1,8 +1,8 @@
-const linechartSpec = {
+const barchartSpec = {
   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
   description: "Stock prices of 5 Tech Companies over Time.",
-  width: "600",
-  height: "600",
+  width: "400",
+  height: "300",
   data: {
     name: "alarms",
     values: [
@@ -148,10 +148,10 @@ const linechartSpec = {
     point: true,
   },
   encoding: {
-    x: { timeUnit: "dayhours", field: "Time" },
-    y: { field: "count", type: "quantitative" },
+    x: { timeUnit: "dayhours", field: "Time", axis: {} },
+    y: { field: "count", type: "quantitative", axis: {} },
     color: { field: "type", type: "nominal" },
   },
 };
 
-export default linechartSpec;
+export default barchartSpec;

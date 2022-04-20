@@ -16,6 +16,7 @@ for (let item of uniqueAlaramTypes) {
     text: item,
   });
 }
+xyAxisParameterOptions.push({ key: "all", value: "All", text: "All" });
 
 const CreateWidgetStepOne = ({ setCurrentStep }) => {
   const createCustomWidgetStepOneData = JSON.parse(
@@ -38,6 +39,10 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
     createCustomWidgetStepOneData?.dataConfig?.yAxisFormatter || ""
   );
 
+  const [parser, setParser] = useState(
+    createCustomWidgetStepOneData?.dataConfig?.parser || ""
+  );
+
   function handleCreateWidgetStepOneData(e) {
     e.preventDefault();
     window.localStorage.setItem(
@@ -58,9 +63,9 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
   return (
     <Form>
       <Form.Field required>
-        <label>Tittle</label>
+        <label>Title</label>
         <Input
-          placeholder="Tittle"
+          placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -70,7 +75,7 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
         <Dropdown
           value={xAxisParameter}
           placeholder="Select your X-Axis Parameter"
-          options={xyAxisParameterOptions}
+          options={[{ key: "Time", value: "Time", text: "Time" }]}
           onChange={(e, { value }) => setXAxisParameter(value)}
           selection
         />
@@ -99,6 +104,14 @@ const CreateWidgetStepOne = ({ setCurrentStep }) => {
           placeholder="Y-Axis Formatter"
           value={yAxisFormatter}
           onChange={(e) => setYAxisFormatter(e.target.value)}
+        />
+      </Form.Field>
+      <Form.Field>
+        <label>Parser</label>
+        <TextArea
+          placeholder="Parser"
+          value={parser}
+          onChange={(e) => setParser(e.target.value)}
         />
       </Form.Field>
       <Button

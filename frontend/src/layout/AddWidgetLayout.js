@@ -78,7 +78,7 @@ class AddWidgetLayout extends React.PureComponent {
           onClick={this.onAddItem}
           style={{ margin: "0 auto", display: "block" }}
         >
-          Add Item
+          Add Widget
         </Button>
         <ReactGridLayout
           layout={this.state.layout}
